@@ -9,8 +9,7 @@ const App = () => {
   const [query, setQuery] = useState("chicken");
   const app_id = "a337db65";
   const api_key = "f7d91ea463667f4d882d3626ce3822c9";
-  const api_url = `api.edamam.com/search?q=${query}&app_id=${app_id}&app_key=${api_key}`;
-
+  const api_url = `https://api.edamam.com/search?q=${query}&app_id=${app_id}&app_key=${api_key}`;
   // useEffect similar componentDidMount, 2nd [] parameters empty only run once before api request; [sth] means only run if any changes
   // same as search if use useEffect;if[sth], means every time click sth even one letter, go to request api,  but hit is limited; only finish typing, request data from api
   useEffect(() => {
@@ -21,6 +20,7 @@ const App = () => {
   const recipesDetails = async () => {
     const response = await fetch(api_url);
     const data = await response.json();
+    // console.log(data);
     setRecipes(data.hits);
   };
 
@@ -33,7 +33,7 @@ const App = () => {
     e.preventDefault();
     setQuery(search);
     // after user search, the input form back to "empty string"
-    setQuery("");
+    setSearch("");
   };
 
   return (
@@ -50,15 +50,17 @@ const App = () => {
           Search
         </button>
       </form>
-      {recipes.map(recipe => (
-        <Recipe
-          key={recipe.recipe.label}
-          title={recipe.recipe.label}
-          calories={recipe.recipe.calories}
-          image={recipe.recipe.image}
-          ingredients={recipe.recipe.ingredients}
-        />
-      ))}
+      <section>
+        {recipes.map(recipe => (
+          <Recipe
+            key={recipe.recipe.label}
+            title={recipe.recipe.label}
+            calories={recipe.recipe.calories}
+            image={recipe.recipe.image}
+            ingredients={recipe.recipe.ingredients}
+          />
+        ))}
+      </section>
     </div>
   );
 };
