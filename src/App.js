@@ -11,11 +11,11 @@ const App = () => {
   const api_key = "f7d91ea463667f4d882d3626ce3822c9";
 
   // useEffect similar componentDidMount, 2nd [] parameters empty only run once before api request; [sth] means only run if any changes
-  // same as search if use useEffect;if[sth], means every time click sth even one letter, go to request api,  but hit is limited; only finish typing, request data from api
+  // same as search if use useEffect;if[search], means every time click sth even one letter, go to request api,  but hit is limited; only finish typing, request data from api
   useEffect(() => {
     recipesDetails();
   }, [query]);
-  // query,only run onSummit button
+  // query,only run the effect if query changes
 
   const recipesDetails = async () => {
     const api_url = `https://api.edamam.com/search?q=${query}&app_id=${app_id}&app_key=${api_key}`;
@@ -30,7 +30,7 @@ const App = () => {
   };
 
   // this function for only summit search button then request can get the data; otherwise even one letter request one time api
-  const getSearch = e => {
+  const getQuery = e => {
     e.preventDefault();
     setQuery(search);
     // after user search, the input form back to "empty string"
@@ -40,7 +40,7 @@ const App = () => {
   return (
     <div className="App">
       <h1>Welcome to Meal Heaven Restaurant</h1>
-      <form className="search_form" onSubmit={getSearch}>
+      <form className="search_form" onSubmit={getQuery}>
         <input
           className="search_input"
           type="text"
