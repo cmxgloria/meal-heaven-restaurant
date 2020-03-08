@@ -9,7 +9,7 @@ const App = () => {
   const [query, setQuery] = useState("chicken");
   const app_id = "a337db65";
   const api_key = "f7d91ea463667f4d882d3626ce3822c9";
-  const api_url = `https://api.edamam.com/search?q=${query}&app_id=${app_id}&app_key=${api_key}`;
+
   // useEffect similar componentDidMount, 2nd [] parameters empty only run once before api request; [sth] means only run if any changes
   // same as search if use useEffect;if[sth], means every time click sth even one letter, go to request api,  but hit is limited; only finish typing, request data from api
   useEffect(() => {
@@ -18,6 +18,7 @@ const App = () => {
   // query,only run onSummit button
 
   const recipesDetails = async () => {
+    const api_url = `https://api.edamam.com/search?q=${query}&app_id=${app_id}&app_key=${api_key}`;
     const response = await fetch(api_url);
     const data = await response.json();
     // console.log(data);

@@ -9,7 +9,7 @@
 }
 h1 {
   display: flex;
-  column-gap: initial;
+  justify-content: center;
 }
 .search_form {
   min-height: 10vh;
@@ -21,11 +21,12 @@ h1 {
   width: 50%;
   border: none;
   padding: 10px;
+  box-shadow: 10em;
+  /* box-sizing: border-box; */
 }
 .search_button {
-  box-sizing: border-box;
+  /* box-sizing: border-box; */
   background: coral;
-  border: cornflowerblue;
   padding: 10px, 20px;
   color: white;
 }
