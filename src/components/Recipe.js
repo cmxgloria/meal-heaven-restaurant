@@ -1,13 +1,14 @@
 import React from "react";
-import style from "./recipe.css";
+import style from "./Recipe.css";
 
-const Recipe = ({ title, calories, image, ingredients }) => {
+const Recipe = props => {
+  const { title, ingredients, calories, image } = props.location.recipe;
   return (
     <div className={style.recipe}>
       <h1>{title}</h1>
       <ol>
-        {ingredients.map(ingredient => (
-          <li>{ingredient.text}</li>
+        {ingredients.map((ingredient, index) => (
+          <li key={index}>{ingredient.text}</li>
         ))}
       </ol>
       <p>{calories}</p>
