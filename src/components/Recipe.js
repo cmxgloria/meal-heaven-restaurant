@@ -1,18 +1,21 @@
 import React from "react";
-import style from "./Recipe.css";
+import { Redirect } from "react-router-dom";
 
 const Recipe = props => {
-  const { title, ingredients, calories, image } = props.location.recipe;
+  if (!props.location || !props.location.recipe) {
+    return <Redirect to="/" />;
+  }
+  const { label, ingredients, calories, image } = props.location.recipe;
   return (
-    <div className={style.recipe}>
-      <h1>{title}</h1>
-      <ol>
+    <div className="recipe">
+      <h1>{label}</h1>
+      <ul>
         {ingredients.map((ingredient, index) => (
           <li key={index}>{ingredient.text}</li>
         ))}
-      </ol>
+      </ul>
       <p>{calories}</p>
-      <img className={style.image} src={image} alt="" />
+      <img className="image" src={image} alt="" />
     </div>
   );
 };

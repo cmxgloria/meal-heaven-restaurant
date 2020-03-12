@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import "./Recipes.css";
 
 const Recipes = () => {
   const [recipes, setRecipes] = useState([]);
@@ -54,7 +53,7 @@ const Recipes = () => {
           Search
         </button>
       </form>
-      <section>
+      <section className="recipes">
         {recipes.map(item => (
           <div key={getId(item.recipe.uri)}>
             <Link
@@ -72,7 +71,11 @@ const Recipes = () => {
                 recipe: item.recipe
               }}
             >
-              <img src={item.recipe.image} alt={item.recipe.label} />
+              <img
+                className="image"
+                src={item.recipe.image}
+                alt={item.recipe.label}
+              />
             </Link>
           </div>
         ))}
